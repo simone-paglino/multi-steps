@@ -26,7 +26,6 @@ const MultiSteps: React.FC<MultiStepsProps> = ({
   const handleNextButton = async () => {
     if (currentStepState === steps.length - 1) {
       if (lastFunction && typeof lastFunction === "function") {
-        // TODO: check this problem
         await lastFunction();
       }
     } else {
@@ -38,14 +37,12 @@ const MultiSteps: React.FC<MultiStepsProps> = ({
         nextStep = await fnCheck();
       }
       if (nextStep) {
-        if (nextStep) {
-          const fnNext = getCurrentFunction(currentStepState, "NEXT");
+        const fnNext = getCurrentFunction(currentStepState, "NEXT");
 
-          if (fnNext) {
-            await fnNext();
-          }
-          setCurrentStepState(currentStepState + 1);
+        if (fnNext) {
+          await fnNext();
         }
+        setCurrentStepState(currentStepState + 1);
       } else {
         window.alert("CHECK FAILED");
       }
