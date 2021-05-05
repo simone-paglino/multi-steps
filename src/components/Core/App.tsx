@@ -6,7 +6,7 @@ import MultiSteps from "../MultiSteps/MultiSteps";
 import Test1 from "../DummyComponents/Test1";
 import Test2 from "../DummyComponents/Test2";
 
-export const App: React.FC = () => {
+const App: React.FC = () => {
   return (
     <MultiStepsContextProvider>
       <MultiSteps

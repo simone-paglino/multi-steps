@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // Context
 import { useMultiStepsContext } from "../../context/MultiStepsContext";
 
@@ -10,10 +10,10 @@ export interface MultiStepsProps {
   title?: string;
   arrTitles?: Array<string>;
   steps: Array<SingleStepProps>;
-  lastFunction?: Promise<any | void>;
+  lastFunction?: () => Promise<any | void>;
 }
 
-export const MultiSteps: React.FC<MultiStepsProps> = ({
+const MultiSteps: React.FC<MultiStepsProps> = ({
   title,
   arrTitles,
   steps,

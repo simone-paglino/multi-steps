@@ -4,7 +4,7 @@ import { useMultiStepsContext } from "../../context/MultiStepsContext";
 
 export interface Test1Props {}
 
-export const Test1: React.FC<Test1Props> = () => {
+const Test1: React.FC<Test1Props> = () => {
   const { registerFunctionsStep } = useMultiStepsContext();
 
   const greetingsTEST1 = async () => {
