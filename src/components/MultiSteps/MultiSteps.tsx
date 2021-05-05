@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useMultiStepsContext } from "../../context/MultiStepsContext";
 
 export interface SingleStepProps {
-  componentToRender: React.FC;
+  componentToRender: React.ReactElement;
 }
 
 export interface MultiStepsProps {
@@ -44,9 +44,10 @@ const MultiSteps: React.FC<MultiStepsProps> = ({
           if (fnNext) {
             await fnNext();
           }
-          console.log("after next step");
           setCurrentStepState(currentStepState + 1);
         }
+      } else {
+        window.alert("CHECK FAILED");
       }
     }
   };
@@ -68,8 +69,7 @@ const MultiSteps: React.FC<MultiStepsProps> = ({
   };
 
   const getComponentToRender = () => {
-    // TODO: Test this function if the user wants to pass a components with props
-    return steps[currentStepState].componentToRender();
+    return steps[currentStepState].componentToRender;
   };
 
   return (

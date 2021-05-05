@@ -11,7 +11,11 @@ const App: React.FC = () => {
     <MultiStepsContextProvider>
       <MultiSteps
         arrTitles={["This is TEST1", "This is TEST2"]}
-        steps={[{ componentToRender: Test1 }, { componentToRender: Test2 }]}
+        steps={[
+          { componentToRender: <Test1 /> },
+          { componentToRender: <Test2 /> },
+        ]}
+        lastFunction={async () => window.alert("THIS IS LAST FUNCTION")}
       />
     </MultiStepsContextProvider>
   );
