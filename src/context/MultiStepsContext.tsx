@@ -5,7 +5,7 @@ interface ContextProviderValues {
   registerFunctionsStep: (
     indexStep: number,
     prevFunction?: () => Promise<any | void>,
-    checkFunction?: () => Promise<any | void>,
+    checkFunction?: () => Promise<boolean>,
     nextFunction?: () => Promise<any | void>
   ) => void;
   getCurrentFunction: (
@@ -16,7 +16,7 @@ interface ContextProviderValues {
 
 interface FunctionsSingleStep {
   prevFunction?: () => Promise<any | void>;
-  checkFunction?: () => Promise<any | void>;
+  checkFunction?: () => Promise<boolean>;
   nextFunction?: () => Promise<any | void>;
 }
 
@@ -45,7 +45,7 @@ const MultiStepsContextProvider: React.FC = ({ children }) => {
   const registerFunctionsStep = (
     indexStep: number,
     prevFunction?: () => Promise<any | void>,
-    checkFunction?: () => Promise<any | void>,
+    checkFunction?: () => Promise<boolean>,
     nextFunction?: () => Promise<any | void>
   ) => {
     const addedFunction = {
@@ -79,7 +79,11 @@ const MultiStepsContextProvider: React.FC = ({ children }) => {
 
   return (
     <MultiStepsContext.Provider
-      value={{ updateState, registerFunctionsStep, getCurrentFunction }}
+      value={{
+        updateState,
+        registerFunctionsStep,
+        getCurrentFunction,
+      }}
     >
       {children}
     </MultiStepsContext.Provider>
