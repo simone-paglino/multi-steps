@@ -1,12 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+// Context
+import { MultiStepsContextProvider } from "./context/MultiStepsContext";
+// Components
 import App from "./components/Core/App";
+// Style
+import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MultiStepsContextProvider>
+      <App />
+    </MultiStepsContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

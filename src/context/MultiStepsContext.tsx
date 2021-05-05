@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 
 interface ContextProviderValues {
   updateState: (data: any, stepIndex: number) => void;
+  getCompleteState: () => SingleGroupFunctions;
   registerFunctionsStep: (
     indexStep: number,
     prevFunction?: () => Promise<any | void>,
@@ -27,7 +28,9 @@ interface SingleGroupFunctions {
 const MultiStepsContext = createContext({} as ContextProviderValues);
 
 const MultiStepsContextProvider: React.FC = ({ children }) => {
-  const [multiStepState, setMultiStepState] = useState({});
+  const [multiStepState, setMultiStepState] = useState<SingleGroupFunctions>(
+    {}
+  );
   const [
     functionsStepsState,
     setFunctionsStepsState,
@@ -40,6 +43,10 @@ const MultiStepsContextProvider: React.FC = ({ children }) => {
     };
 
     setMultiStepState(newState);
+  };
+
+  const getCompleteState = (): SingleGroupFunctions => {
+    return multiStepState;
   };
 
   const registerFunctionsStep = (
@@ -81,6 +88,7 @@ const MultiStepsContextProvider: React.FC = ({ children }) => {
     <MultiStepsContext.Provider
       value={{
         updateState,
+        getCompleteState,
         registerFunctionsStep,
         getCurrentFunction,
       }}
