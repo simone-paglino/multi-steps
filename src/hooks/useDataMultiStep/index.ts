@@ -17,13 +17,13 @@ const useDataMultiStep = <T extends Record<string, unknown>,>(
 			...updatedValue
 		}))
 	}
-  
+
 	const removeDataSpecificStep = (step: number): void => {
 		const keyToReset = Object.keys(dataMultiStepState)[step]
 
 		updateDataMultiStep({[keyToReset]: defaultState[keyToReset]})
 	}
-  
+
 	return {
 		dataMultiStepState,
 		updateDataMultiStep,

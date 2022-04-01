@@ -2,35 +2,8 @@ import { waitFor } from '@testing-library/react'
 import { renderHook, act } from '@testing-library/react-hooks'
 // Hooks
 import useDataMultiStep from '../'
-
-type MockDefaultState = {
-  step1: {
-    name: string;
-    surname: string;
-  },
-  step2: {
-    email: string;
-    password: string;
-  }
-}
-
-const mockDefaultState: MockDefaultState = {
-	step1: {
-		name: 'John',
-		surname: 'Doe'
-	},
-	step2: {
-		email: 'example@gmail.com',
-		password: 'abcd1234'
-	}
-}
-
-const mockOnlyUpdatedPart: Pick<MockDefaultState, 'step2'> = {
-	step2: {
-		email: 'example@my-domain.com',
-		password: '00000000'
-	}
-}
+// Mocks
+import { mockDefaultState, mockOnlyUpdatedPart } from '../../../__mocks__/useDataMultiStepMock'
 
 describe('useDataMultiStep hook: ', () => {
 	describe('dataMultiStepState state: ', () => {
